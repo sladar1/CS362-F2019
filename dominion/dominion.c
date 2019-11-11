@@ -134,7 +134,7 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
     }
 
     ////////////////////////
-    //supply intilization complete
+    //supply initialization complete
 
     //set player decks
     for (i = 0; i < numPlayers; i++)
@@ -150,6 +150,7 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
             state->deck[i][j] = copper;
             state->deckCount[i]++;
         }
+
     }
 
     //shuffle player decks
@@ -576,7 +577,7 @@ int drawCard(int player, struct gameState *state)
         state->deckCount[player] = state->discardCount[player];
         state->discardCount[player] = 0;//Reset discard
 
-        //Shufffle the deck
+        //Shuffle the deck
         shuffle(player, state);//Shuffle the deck up and make it so that we can draw
 
         if (DEBUG) { //Debug statements
@@ -684,6 +685,10 @@ int getCost(int cardNumber)
 //NEW CARD FUNCTIONS//
 /////////////////////////////////////////////////////////////////////
 void playBaron(int currentPlayer, struct gameState *state, int choice1){
+
+/* Card Text:
++1 Buy. You may discard an Estate card. If you do, +$4. Otherwise, gain an Estate card. */
+
     state->numBuys++;//Increase buys by 1!
     if (choice1 > 0) { //Boolean true or going to discard an estate
         int p = 0;//Iterator for hand!
@@ -698,7 +703,7 @@ void playBaron(int currentPlayer, struct gameState *state, int choice1){
                 }
                 state->hand[currentPlayer][state->handCount[currentPlayer]] = -1;
                 state->handCount[currentPlayer]--;
-                 card_not_discarded = 1;//Exit the loop
+                 card_not_discarded = 0;//Exit the loop
             }
             else if (p > state->handCount[currentPlayer]) {
                 if(DEBUG) {
@@ -713,7 +718,7 @@ void playBaron(int currentPlayer, struct gameState *state, int choice1){
                         isGameOver(state);
                     }
                 }
-                card_not_discarded = 1;//Exit the loop
+                card_not_discarded = 0;//Exit the loop
             }
 
             else {
@@ -733,11 +738,17 @@ void playBaron(int currentPlayer, struct gameState *state, int choice1){
         }
     }
 
+    state->numBuys = 1;
+
     return;
 
 }
 
 void playMinion(struct gameState* state, int handPos, int currentPlayer, int choice1, int choice2){
+
+    /* Card Text:
+    +1 Action. Choose one: +$2; or discard your hand, +4 Cards, and each other player with at least 5 cards in hand discards their hand and draws 4 cards. */
+
     int i, j;
     
     //+1 action
@@ -791,6 +802,11 @@ void playMinion(struct gameState* state, int handPos, int currentPlayer, int cho
 }
 
 void playAmbassador(struct gameState* state, int currentPlayer, int handPos, int choice1, int choice2){
+
+    /* Card Text:	
+    Reveal a card from your hand. Return up to 2 copies of it from your hand to the Supply. 
+    Then each other player gains a copy of it. */
+
     int i;
     int j = 0;		//used to check if player has enough cards to discard
 
@@ -850,6 +866,11 @@ void playAmbassador(struct gameState* state, int currentPlayer, int handPos, int
 }
 
 void playTribute(struct gameState* state, int nextPlayer, int currentPlayer){
+
+    /* Card Text:
+    The player to your left reveals then discards the top 2 cards of his deck. 
+    For each differently named card revealed, if it is an… Action Card, +2 Actions. Treasure Card, +$2. Victory Card, +2 Cards. */
+
     int i;
 
     int tributeRevealedCards[2] = {-1, -1};
@@ -913,7 +934,11 @@ void playTribute(struct gameState* state, int nextPlayer, int currentPlayer){
     return;
 }
 
-void playMine(int currentPlayer, int choice1, int choice2,int handPos, struct gameState *state){
+void playMine(int currentPlayer, int choice1, int choice2, int handPos, struct gameState *state){
+
+    /* Card Text:
+    You may trash a Treasure from your hand. Gain a Treasure to your hand costing up to $3 more than it. */
+
     int i, j;
     j = state->hand[currentPlayer][choice1];  //store card we will trash
 

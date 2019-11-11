@@ -105,6 +105,10 @@ void playTribute(struct gameState* state, int nextPlayer, int currentPlayer);
 void playMine(int currentPlayer, int choice1, int choice2,int handPos, struct gameState *state);
 /////////////////////
 
+int drawCard(int player, struct gameState *state);
+int gainCard(int supplyPos, struct gameState *state, int toFlag, int player);
+int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag);
+
 int buyCard(int supplyPos, struct gameState *state);
 /* Buy card with supply index supplyPos */
 
