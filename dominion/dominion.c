@@ -698,7 +698,7 @@ void playBaron(int currentPlayer, struct gameState *state, int choice1){
                 }
                 state->hand[currentPlayer][state->handCount[currentPlayer]] = -1;
                 state->handCount[currentPlayer]--;
-                 card_not_discarded = 1;//Exit the loop
+                 card_not_discarded = 0;//Exit the loop
             }
             else if (p > state->handCount[currentPlayer]) {
                 if(DEBUG) {
@@ -713,7 +713,7 @@ void playBaron(int currentPlayer, struct gameState *state, int choice1){
                         isGameOver(state);
                     }
                 }
-                card_not_discarded = 1;//Exit the loop
+                card_not_discarded = 0;//Exit the loop
             }
 
             else {
