@@ -22,8 +22,8 @@ void testMinion(){
     int numPlayers, seed, player, coins, choice1, choice2, drawNum, handNum;
     int it = 1;
 
-    while(it < 3000){
-        numPlayers = rand() % (4 + 2 - 0) + 2;
+    while(it < 3500){
+        numPlayers = rand() % (4 + 1 - 2) + 2;
         seed = rand();
         player = numPlayers-1;
         choice1 = rand() % (1 + 1 - 0) + 0;
@@ -66,7 +66,7 @@ void testMinion(){
         else{
             printf("CARD CHECK BRANCH: \n");
             if(numPlayers > 1){
-                for(int i = 0; i < player; i++){
+                for(int i = 0; i < numPlayers; i++){
                     printf("\tPLAYER %d:", i);
                     if(hand[i] > 4){
                         //Check if hand was discarded and +4 cards

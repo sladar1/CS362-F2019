@@ -22,7 +22,7 @@ void testBaron(){
     int numPlayers, seed, player, coins, choice, drawNum, handNum;
     int it = 1;
 
-    while(it < 3000){
+    while(it < 3500){
         numPlayers = rand() % (4 + 1 - 2) + 2;
         seed = rand();
         player = numPlayers-1;
@@ -41,14 +41,14 @@ void testBaron(){
         
         //draw new hand
         drawNum = rand() % (10 + 1 - 0) + 0;
-        for (int j = 0; j <= drawNum ; j++){
+        for (int j = 0; j < drawNum ; j++){
             drawCard(player, &G);
         }
         
-
         G.coins = coins;
         coins += 4;
         printf("BARON TEST %d:\n", it);
+        printf("HAND NUMBER: %d\n", G.handCount[player]);
         printf("COIN CHECK %d:", it);
         playBaron(player, &G, choice);
         assertCheck(G.coins, coins);
@@ -58,17 +58,6 @@ void testBaron(){
 
     printf("~BARON TEST COMPLETE!~\n");
 
-    /*
-    coins = 10;
-    printf("num buy check: %d\n", G.numBuys);
-    printf("Getting ready to run tests:\n");
-    playBaron(player, &G, 1);
-    printf("TEST #1: ");
-    printf("01: Checking if the number of coins is increased by 4...");
-    assertCheck(G.coins, coins);
-
-    printf("num buy check: %d\n", G.numBuys);
-    */
 }
 
 int main(){

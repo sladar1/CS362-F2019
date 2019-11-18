@@ -898,13 +898,14 @@ void playTribute(struct gameState* state, int nextPlayer, int currentPlayer){
 
     for (i = 0; i <= 2; i ++) {
         if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold) { //Treasure cards
-            state->coins = 2;
+            state->coins += 2;
         }
 
         else if (tributeRevealedCards[i] == estate || tributeRevealedCards[i] == duchy || tributeRevealedCards[i] == province || tributeRevealedCards[i] == gardens || tributeRevealedCards[i] == great_hall) { //Victory Card Found
             drawCard(currentPlayer, state);
             drawCard(currentPlayer, state);
         }
+
         else { //Action Card
             state->numActions = state->numActions + 2;
         }
