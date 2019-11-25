@@ -2,7 +2,7 @@
 #include<string.h>
 #include<stdlib.h>
 #include<time.h>
-#include "dominion.h"
+#include "dominion_helpers.h"
 
 int assertCheck(int check1, int check2){
     if(check1 == check2){
@@ -58,7 +58,7 @@ void testMinion(){
             hand[i] = G.handCount[i];
         }
 
-        playMinion(&G, G.handCount[player], player, choice1, choice2);
+        playMinion(&G, player, choice1, choice2, G.handCount[player]);
         if(choice1 > 0){
             printf("COIN CHECK BRANCH:");
             assertCheck(G.coins, coins);

@@ -2,7 +2,7 @@
 #include<string.h>
 #include<stdlib.h>
 #include<time.h>
-#include "dominion.h"
+#include "dominion_helpers.h"
 
 int assertCheck(int check1, int check2){
     if(check1 == check2){
@@ -64,7 +64,9 @@ void testTribute(){
         coins += 2; handNum += 2; actNum += 2;
 
         printf("TRIBUTE TEST %d\n", it);
-        playTribute(&G, 0, player);
+        // The value here for handPos is a filler value
+        // since it isn't required or used in this function call
+        playTribute(&G, player, 0, 0);
         for (int i = 0; i < 2; i ++) {
             if (tCards[i] == copper || tCards[i] == silver || tCards[i] == gold) { //Treasure cards
                 printf("COIN CHECK +2: ");

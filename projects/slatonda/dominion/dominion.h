@@ -97,6 +97,14 @@ int playCard(int handPos, int choice1, int choice2, int choice3,
              struct gameState *state);
 /* Play card with index handPos from current player's hand */
 
+//NEW CARD FUNCTIONS//
+void playBaron(int currentPlayer, struct gameState *state, int choice1);
+void playMinion(struct gameState* state, int handPos, int currentPlayer, int choice1, int choice2);
+void playAmbassador(struct gameState* state, int currentPlayer, int handPos, int choice1, int choice2);
+void playTribute(struct gameState* state, int nextPlayer, int currentPlayer);
+void playMine(int currentPlayer, int choice1, int choice2,int handPos, struct gameState *state);
+/////////////////////
+
 int buyCard(int supplyPos, struct gameState *state);
 /* Buy card with supply index supplyPos */
 

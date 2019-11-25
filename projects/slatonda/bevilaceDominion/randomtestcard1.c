@@ -2,7 +2,7 @@
 #include<string.h>
 #include<stdlib.h>
 #include<time.h>
-#include "dominion.h"
+#include "dominion_helpers.h"
 
 int assertCheck(int check1, int check2){
     if(check1 == check2){
@@ -63,7 +63,10 @@ void testBaron(){
 
         printf("BARON TEST %d:\n", it);
         //printf("HAND NUMBER: %d\n", G.handCount[player]);
-        playBaron(player, &G, choice);
+        
+        // The value here for handPos is a filler value
+        // since it isn't required or used in this function call
+        playBaron(&G, player, choice, 0);
         if(choice > 0){
             printf("COIN CHECK:");
             assertCheck(G.coins, coins);            

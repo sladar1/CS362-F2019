@@ -4,16 +4,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "dominion.h"
+#include "dominion_helpers.h"
 #include "rngs.h"
 
 int assertCheck(int check1, int check2){
     if(check1 == check2){
-        printf(" PASSED!\n\n");
+        printf(" PASSED!\n");
         return 1;
     }
     else{
-        printf(" FAILED!\n\n");
+        printf(" FAILED!\n");
         return 0;
     }
 }
@@ -37,7 +37,7 @@ int main(int argc, char* argv[]){
     int coinCheck = G.coins+2;
 
     //Choosing to add +2 to coins
-    playMinion(&G, 5, player1, 1, 0);
+    playMinion(&G, player1, 1, 0, 5);
     printf("MINION TESTS\n");
     printf("TEST #1: Choosing to gain +2 to coins\n");
     printf("01: Checking if the number of coins is increased by 2...");
@@ -74,7 +74,7 @@ int main(int argc, char* argv[]){
     printf("Card check p3: %d\n", G.handCount[player3]);
     */
 
-    playMinion(&G, 5, player1, 1, 0);
+    playMinion(&G, player1, 0, 1, 5);
 
     /*
     printf("Card check p1: %d\n", G.handCount[player1]);
@@ -82,7 +82,7 @@ int main(int argc, char* argv[]){
     printf("Card check p3: %d\n", G.handCount[player3]);
     */
 
-    printf("TEST #2: Choosing to discard hand\n");
+    printf("\nTEST #2: Choosing to discard hand\n");
     printf("02: Checking if Player 1 has 4 cards...");
     assertCheck(G.handCount[player1], 4);
     printf("03: Checking if Player 2 has 4 cards...");
@@ -90,4 +90,5 @@ int main(int argc, char* argv[]){
     printf("04: Checking if Player 3 has 3 cards...");
     assertCheck(G.handCount[player3], 3);
 
+    printf("\n~MINION TESTS COMPLETE!~\n\n");
 }
